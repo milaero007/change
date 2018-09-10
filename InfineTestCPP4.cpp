@@ -9,7 +9,43 @@
 
 	// -- IMPLEMENTATION --
 void giveChangeImpl(int & change, int  result[4], int step = 0) {
+	// 10
+	if (step < 1) {
+		result[TEN] = change/10;
+		if (result[TEN]) {
+			change = change % 10;
+			if ((change == 1) || (change == 3)) {
+				step = 1;
+				result[TEN]--;
+				change+=10;
+				giveChangeImpl(change, result, step);
+				return;
+			}
+		}
+		if (change == 0) return;
+	}
+	// 5
+	if (step < 2) {
+		result[FIVE] = change/5;
+		if (result[FIVE]) {
+			change = change % 5;
+			if ((change == 1) || (change == 3)) {
+				step = 2;
+				result[FIVE]--;
+				change+=5;
+				giveChangeImpl(change, result, step);
+				return;
+			}
+		}
+		if (change == 0) return;
+	}
+	// 2
+	result[TWO] = change/2;
+	if (result[TWO]) {
+		int lastchange = change % 2;
+	}
 }
+
 
 
 void giveChange(int change, int  result[4]) {
